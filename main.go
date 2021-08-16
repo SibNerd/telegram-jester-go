@@ -23,10 +23,6 @@ func main() {
   // Connect to API with jokes
   joke_api:= jokeapi.New()
   
-  // if err != nil {
-  	// log.Panic(err)
-  // }
-  
   // Create bot   
 	bot, err := tgbotapi.NewBotAPI(string(bot_token)) 
 	if err != nil {
@@ -58,10 +54,10 @@ func main() {
         case "joke":
           joke_api.SetParams(&ctgs, &blacklist, &joke_type)
           response, err := joke_api.Fetch()
-          if err != null {
+          if err != nil {
             log.Panic(err)
           }
-          msg.Text = response
+          msg.Text = response.Joke
         default: 
           msg.Text = "Боюсь, я не знаю такой команды :с"
       }
