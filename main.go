@@ -1,27 +1,12 @@
 package main
 
 import (
-  "net/http"
-  "encoding/json"
   "github.com/Syfaro/telegram-bot-api"
   "github.com/icelain/jokeapi"
+  
   "log"
-  "io/ioutil"
+  "os"
   )
-
-// const joke_api_one := "https://official-joke-api.appspot.com/jokes/general/random"
-
-func getJson(url string, target interface{}) error {
-  // Get nice JSON from URL response
-  var myClient = &http.Client{Timeout: 10 * time.Second}
-    r, err := myClient.Get(url)
-    if err != nil {
-        return err
-    }
-    defer r.Body.Close()
-
-    return json.NewDecoder(r.Body).Decode(target)
-}
 
 func main() {
   // Set parameters for jokeAPI
@@ -39,7 +24,7 @@ func main() {
   joke_api, err := jokeapi.New()
   
   if err != nil {
-  	panic(err)
+  	log.Panic(err)
   }
   
   // Create bot   
