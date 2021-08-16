@@ -49,8 +49,10 @@ func main() {
       
       msg := tgbotapi.NewMessage(update.Message.Chat.ID, "")
       switch update.Message.Command() {
+        case "start":
+          msg.Text = "Hi! I'm a joker. If you wanna read a joke, simply type /joke"
         case "help": 
-          msg.Text = "Выберите команду /joke для получения случайной шутки."
+          msg.Text = "Type /joke to get random joke."
         case "joke":
           joke_api.SetParams(&ctgs, &blacklist, &joke_type)
           response, err := joke_api.Fetch()
@@ -59,7 +61,7 @@ func main() {
           }
           msg.Text = response.Joke[0]
         default: 
-          msg.Text = "Боюсь, я не знаю такой команды :с"
+          msg.Text = "I'm afraid I don't know that command :с"
       }
 		  bot.Send(msg)
 		} 
