@@ -4,7 +4,7 @@ import (
   "fmt"
   "github.com/Syfaro/telegram-bot-api"
   "log"
-  "ioutil"
+  "io/ioutil"
   )
 
 func main() {
