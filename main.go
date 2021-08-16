@@ -21,7 +21,7 @@ func main() {
     } 
   
   // Connect to API with jokes
-  joke_api, err := jokeapi.New()
+  joke_api:= jokeapi.New()
   
   // if err != nil {
   	// log.Panic(err)
@@ -54,13 +54,13 @@ func main() {
       msg := tgbotapi.NewMessage(update.Message.Chat.ID, "")
       switch update.Message.Command() {
         case "help": 
-          msg.Text("Выберите команду /joke для получения случайной шутки.")
+          msg.Text = "Выберите команду /joke для получения случайной шутки."
         case "joke":
-          api.SetParams(&ctgs, &blacklist, &jt)
-          response := api.Fetch()
-          msg.Text(response)
+          joke_api.SetParams(&ctgs, &blacklist, &jt)
+          response := joke_api.Fetch()
+          msg.Text = response
         default: 
-          msg.Text("Боюсь, я не знаю такой команды :с")
+          msg.Text = "Боюсь, я не знаю такой команды :с"
       }
 		  bot.Send(msg)
 		} 
