@@ -29,11 +29,11 @@ func main() {
   blacklist := []string{"rasist", "sexist"}
   ctgs := []string{"Misc", "Pun", "Dark"}
   
-  // Get bot token from separate file
-  bot_token, err := ioutil.ReadFile("token.txt")
-    if err != nil {
-          log.Fatal(err)
-     }
+  // Get bot token from environmental variables
+  bot_token := os.Getenv("TOKEN")
+    if bot_token == "" {
+          log.Fatal("Cannot get token.")
+    } 
   
   // Connect to API with jokes
   joke_api, err := jokeapi.New()
@@ -79,6 +79,7 @@ func main() {
         default: 
           msg.Text("Боюсь, я не знаю такой команды :с")
       }
+    } 
 		bot.Send(msg)
 	}
 }
