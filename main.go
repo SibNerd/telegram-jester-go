@@ -15,7 +15,7 @@ func main() {
      }
   
   // Create bot   
-	bot, err := tgbotapi.NewBotAPI(bot_token)
+	bot, err := tgbotapi.NewBotAPI(string(bot_token)) 
 	if err != nil {
 		log.Panic(err)
 	}
