@@ -57,7 +57,7 @@ func main() {
           if err != nil {
             log.Panic(err)
           }
-          msg.Text = response.Joke
+          msg.Text = response.Joke[0]
         default: 
           msg.Text = "Боюсь, я не знаю такой команды :с"
       }
