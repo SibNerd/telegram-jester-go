@@ -56,8 +56,11 @@ func main() {
         case "help": 
           msg.Text = "Выберите команду /joke для получения случайной шутки."
         case "joke":
-          joke_api.SetParams(&ctgs, &blacklist, &jt)
-          response := joke_api.Fetch()
+          joke_api.SetParams(&ctgs, &blacklist, &joke_type)
+          response, err := joke_api.Fetch()
+          if err != null {
+            log.Panic(err)
+          }
           msg.Text = response
         default: 
           msg.Text = "Боюсь, я не знаю такой команды :с"
