@@ -23,9 +23,9 @@ func main() {
   // Connect to API with jokes
   joke_api, err := jokeapi.New()
   
-  if err != nil {
-  	log.Panic(err)
-  }
+  // if err != nil {
+  	// log.Panic(err)
+  // }
   
   // Create bot   
 	bot, err := tgbotapi.NewBotAPI(string(bot_token)) 
@@ -48,9 +48,7 @@ func main() {
 	for update := range updates {
 		if update.Message == nil { // ignore any non-Message Updates
 			continue
-		}
-    
-    if update.Message.IsCommand() {
+		} else if update.Message.IsCommand() {
       log.Printf("[%s] %s", update.Message.From.UserName, update.Message.Text)
       
       msg := tgbotapi.NewMessage(update.Message.Chat.ID, "")
@@ -64,7 +62,7 @@ func main() {
         default: 
           msg.Text("Боюсь, я не знаю такой команды :с")
       }
-    } 
-		bot.Send(msg)
+		  bot.Send(msg)
+		} 
 	}
 }
