@@ -10,7 +10,7 @@ import (
 
 func main() {
   // Set parameters for jokeAPI
-  joke_type := "single"
+  jt := "single"
   blacklist := []string{"rasist", "sexist"}
   ctgs := []string{"Misc", "Pun", "Dark"}
   
@@ -22,7 +22,7 @@ func main() {
   
   // Connect to API with jokes
   joke_api := jokeapi.New()
-  joke_api.SetParams(&joke_type, &blacklist, &ctgs)
+  joke_api.SetParams(&ctgs, &blacklist, &jt)
   
   // Create bot   
 	bot, err := tgbotapi.NewBotAPI(string(bot_token)) 
