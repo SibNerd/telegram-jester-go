@@ -21,7 +21,8 @@ func main() {
     } 
   
   // Connect to API with jokes
-  joke_api:= jokeapi.New()
+  joke_api := jokeapi.New()
+  joke_api.SetParams(&joke_type, &blacklist, &ctgs)
   
   // Create bot   
 	bot, err := tgbotapi.NewBotAPI(string(bot_token)) 
@@ -54,7 +55,6 @@ func main() {
         case "help": 
           msg.Text = "Type /joke to get random joke."
         case "joke":
-          joke_api.SetParams(&ctgs, &blacklist, &joke_type)
           response, err := joke_api.Fetch()
           if err != nil {
             log.Panic(err)
