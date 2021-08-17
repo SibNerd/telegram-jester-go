@@ -10,9 +10,13 @@ import (
 
 func main() {
   // Set parameters for jokeAPI
-  jt := "single"
-  blacklist := []string{"rasist", "sexist"}
-  ctgs := []string{"Misc", "Pun", "Dark"}
+  
+  
+  //Parameters don't work for some reason, probably error in jokeapi, will deal with it later
+  
+  // jt := "single"
+  // blacklist := []string{"rasist", "sexist"}
+  // ctgs := []string{"Misc", "Pun", "Dark"}
   
   // Get bot token from environmental variables
   bot_token := os.Getenv("TOKEN")
@@ -22,7 +26,7 @@ func main() {
   
   // Connect to API with jokes
   joke_api := jokeapi.New()
-  joke_api.SetParams(&ctgs, &blacklist, &jt)
+  // joke_api.SetParams(&ctgs, &blacklist, &jt)
   
   // Create bot   
 	bot, err := tgbotapi.NewBotAPI(string(bot_token)) 
@@ -59,7 +63,11 @@ func main() {
           if err != nil {
             log.Panic(err)
           }
-          msg.Text = response.Joke[0]
+          if len(response.Joke) == 1 {
+            msg.Text = response.Joke[0]
+          } else {
+            msg.Text = response.Joke[0] + "\n" + response.Joke[1]
+          }
         default: 
           msg.Text = "I'm afraid I don't know that command :с"
       }
